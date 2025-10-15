@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Empleados</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .btn { margin: 5px; padding: 5px 10px; text-decoration: none; color: white; }
+        .editar { background-color: #007BFF; }
+        .borrar { background-color: #DC3545; }
+        .agregar { background-color: #28A745; display: inline-block; margin: 10px 0; padding: 10px 15px; color: white; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>Listado de empleados</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Puesto</th>
+                <th>Salario</th>
+                <th>Teléfono</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for empleado in empleados %}
+            <tr>
+                <td>{{ empleado.nombre }}</td>
+                <td>{{ empleado.apellido }}</td>
+                <td>{{ empleado.puesto }}</td>
+                <td>{{ empleado.salario }}</td>
+                <td>{{ empleado.telefono }}</td>
+                <td>
+                    <a href="/editar/{{ empleado.id }}/" class="btn editar">Editar</a>
+                    <a href="/borrar/{{ empleado.id }}/" class="btn borrar">Borrar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No hay empleados registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/agregar/" class="btn agregar">Agregar Empleado</a>
+</body>
+</html>
